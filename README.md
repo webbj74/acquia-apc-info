@@ -1,7 +1,7 @@
 acquia-apc-info
 ===============
 
-On Acquia Cloud's Ubuntu 8.04 webservers we are Running APC 3.0.19
+Acquia Cloud's Ubuntu 8.04 webservers are Running APC 3.0.19
 
 For full source code, please see:
 * http://svn.php.net/viewvc/pecl/apc/tags/RELEASE_3_0_19/
