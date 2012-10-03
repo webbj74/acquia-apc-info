@@ -147,6 +147,22 @@ if (!USE_AUTHENTICATION) {
 	$AUTHENTICATED=1;
 } else {
 	$AUTHENTICATED=0;
+
+	// BEGIN Fast-CGI fix
+	// Requires following line in .htaccess:
+	//   RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
+	$a = base64_decode(substr($_SERVER["REMOTE_USER"],6)) ;
+	if ((strlen($a) == 0) || (strcasecmp($a,":") == 0)) {
+		header('WWW-Authenticate: Basic realm="APC Login"');
+		header('HTTP/1.0 401 Unauthorized');
+	}
+	else {
+		list($name, $pass) = explode(':', $a);
+		$_SERVER['PHP_AUTH_USER'] = $name;
+		$_SERVER['PHP_AUTH_PW'] = $pass;
+	}
+	// END Fast-CGI fix
+
 	if (ADMIN_PASSWORD!='password' && ($MYREQUEST['LO'] == 1 || isset($_SERVER['PHP_AUTH_USER']))) {
 
 		if (!isset($_SERVER['PHP_AUTH_USER']) ||

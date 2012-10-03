@@ -1,0 +1,4 @@
+# Copy the Authorization Header to a REMOTE_USER ENV variable
+RewriteEngine on
+RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
+
