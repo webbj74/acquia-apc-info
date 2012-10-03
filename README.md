@@ -14,4 +14,5 @@ file apc-3.0.19.php includes this patch and works with the included .htaccess
 The acquia-apc-info folder should be added to "docroot/sites/all/libraries/"
 in an Acquia-hosted Drupal repository.
 
-
+It is highly recommended that you edit the php file and change the username
+and password.
